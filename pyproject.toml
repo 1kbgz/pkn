@@ -4,8 +4,8 @@ build-backend="hatchling.build"
 
 [project]
 name = "pkn"
-authors = [{name = "timkpaine", email = "3105306+timkpaine@users.noreply.github.com"}]
-description="My Pocket Knife"
+authors = [{name = "timkpaine", email = "t.paine154@gmail.com"}]
+description = "My Pocket Knife"
 readme = "README.md"
 license = { text = "Apache-2.0" }
 version = "0.1.0"
@@ -14,10 +14,10 @@ keywords = []
 
 classifiers = [
     "Development Status :: 3 - Alpha",
+    "Programming Language :: Python",
     "Programming Language :: Python :: Implementation :: CPython",
     "Programming Language :: Python :: Implementation :: PyPy",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -25,10 +25,6 @@ classifiers = [
 ]
 
 dependencies = []
-
-[project.urls]
-Repository = "https://github.com/timkpaine/pkn"
-Homepage = "https://github.com/timkpaine/pkn"
 
 [project.optional-dependencies]
 develop = [
@@ -44,6 +40,10 @@ develop = [
 ]
 
 [project.scripts]
+
+[project.urls]
+Repository = "https://github.com/timkpaine/pkn"
+Homepage = "https://github.com/timkpaine/pkn"
 
 [tool.bumpversion]
 current_version = "0.1.0"
@@ -65,6 +65,7 @@ ignore = [
     ".copier-answers.yml",
     "Makefile",
     "setup.py",
+    "docs/**/*",
 ]
 
 [tool.coverage.run]
@@ -88,29 +89,10 @@ artifacts = []
 src = "/"
 
 [tool.hatch.build.targets.sdist]
-include = [
-    "/pkn",
-    "LICENSE",
-    "README.md",
-]
-exclude = [
-    ".copier-answers.yml",
-    "/.github",
-    "/.gitattributes",
-    "/.gitignore",
-]
+packages = ["pkn"]
 
 [tool.hatch.build.targets.wheel]
-include = [
-    "/pkn",
-]
-exclude = [
-    ".copier-answers.yml",
-    "/.github",
-    "/.gitattributes",
-    "/.gitignore",
-    "/pyproject.toml",
-]
+packages = ["pkn"]
 
 [tool.hatch.build.targets.wheel.shared-data]
 
