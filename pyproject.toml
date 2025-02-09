@@ -24,7 +24,10 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
 ]
 
-dependencies = []
+dependencies = [
+    "ccflow",
+    "pydantic",
+]
 
 [project.optional-dependencies]
 develop = [
@@ -113,4 +116,4 @@ known-first-party = ["pkn"]
 section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
 
 [tool.ruff.lint.per-file-ignores]
-"__init__.py" = ["F401"]
+"__init__.py" = ["F401", "F403"]
