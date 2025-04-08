@@ -6,7 +6,6 @@ My Pocket Knife
 [![codecov](https://codecov.io/gh/timkpaine/pkn/branch/main/graph/badge.svg)](https://codecov.io/gh/timkpaine/pkn)
 [![License](https://img.shields.io/github/license/timkpaine/pkn)](https://github.com/timkpaine/pkn)
 [![PyPI](https://img.shields.io/pypi/v/pkn.svg)](https://pypi.python.org/pypi/pkn)
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/timkpaine/pkn/main?urlpath=lab)
 
 ## Overview
 
