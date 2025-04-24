@@ -2,9 +2,9 @@
 
 My Pocket Knife
 
-[![Build Status](https://github.com/timkpaine/pkn/actions/workflows/build.yml/badge.svg?branch=main&event=push)](https://github.com/timkpaine/pkn/actions/workflows/build.yml)
-[![codecov](https://codecov.io/gh/timkpaine/pkn/branch/main/graph/badge.svg)](https://codecov.io/gh/timkpaine/pkn)
-[![License](https://img.shields.io/github/license/timkpaine/pkn)](https://github.com/timkpaine/pkn)
+[![Build Status](https://github.com/1kbgz/pkn/actions/workflows/build.yml/badge.svg?branch=main&event=push)](https://github.com/1kbgz/pkn/actions/workflows/build.yml)
+[![codecov](https://codecov.io/gh/1kbgz/pkn/branch/main/graph/badge.svg)](https://codecov.io/gh/1kbgz/pkn)
+[![License](https://img.shields.io/github/license/1kbgz/pkn)](https://github.com/1kbgz/pkn)
 [![PyPI](https://img.shields.io/pypi/v/pkn.svg)](https://pypi.python.org/pypi/pkn)
 
 ## Overview

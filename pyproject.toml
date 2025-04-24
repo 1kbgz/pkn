@@ -4,7 +4,7 @@ build-backend="hatchling.build"
 
 [project]
 name = "pkn"
-authors = [{name = "timkpaine", email = "t.paine154@gmail.com"}]
+authors = [{name = "the pkn authors", email = "t.paine154@gmail.com"}]
 description = "My Pocket Knife"
 readme = "README.md"
 license = { text = "Apache-2.0" }
@@ -47,8 +47,8 @@ develop = [
 [project.scripts]
 
 [project.urls]
-Repository = "https://github.com/timkpaine/pkn"
-Homepage = "https://github.com/timkpaine/pkn"
+Repository = "https://github.com/1kbgz/pkn"
+Homepage = "https://github.com/1kbgz/pkn"
 
 [tool.bumpversion]
 current_version = "0.1.0"

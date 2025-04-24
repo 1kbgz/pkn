@@ -3,8 +3,8 @@ _commit: 122ea92
 _src_path: https://github.com/python-project-templates/base.git
 add_extension: python
 email: t.paine154@gmail.com
-github: timkpaine
+github: 1kbgz
 project_description: My Pocket Knife
 project_name: pkn
 python_version_primary: '3.11'
-team: timkpaine
+team: 1kbgz
