@@ -1,6 +1,6 @@
 from typing import Literal
 
-from ccflow import BaseModel
+from pydantic import BaseModel
 
 
 class JournalCtl(BaseModel):
