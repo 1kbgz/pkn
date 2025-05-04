@@ -101,7 +101,6 @@ packages = ["pkn"]
 
 [tool.pytest.ini_options]
 addopts = ["-vvv", "--junitxml=junit.xml"]
-asyncio_mode = "strict"
 testpaths = "pkn/tests"
 
 [tool.ruff]
