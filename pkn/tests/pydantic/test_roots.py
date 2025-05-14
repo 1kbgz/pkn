@@ -27,6 +27,10 @@ class TestPydanticRoots:
         assert "a" not in d
         assert "b" not in d
 
+    def test_dict_types(self):
+        d = Dict({"a": MyModel(a=1, b="b"), "b": "abc", "c": 1, "d": 1.2, "e": List(), "f": Dict(), "g": None})
+        assert len(d) == 7
+
     def test_list(self):
         lst = List([MyModel(a=1, b="b"), MyModel(a=2, b="c")])
         assert len(lst) == 2
@@ -37,3 +41,7 @@ class TestPydanticRoots:
         del lst[0]
         assert len(lst) == 1
         assert lst[0] == MyModel(a=2, b="c")
+
+    def test_list_types(self):
+        d = List([MyModel(a=1, b="b"), "abc", 1, 1.2, List(), Dict(), None])
+        assert len(d) == 7
