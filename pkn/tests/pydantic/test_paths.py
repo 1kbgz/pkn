@@ -1,0 +1,27 @@
+from pydantic import BaseModel
+
+from pkn.pydantic import CallablePath, ImportPath
+
+
+def foo():
+    return "foo"
+
+
+class MyType(int): ...
+
+
+class MyModel(BaseModel):
+    typ: ImportPath
+    foo: CallablePath
+
+
+def test_get_import_path_inst():
+    m = MyModel(typ=MyType, foo=foo)
+    assert m.typ == MyType
+    assert m.foo == foo
+
+
+def test_get_import_path_string():
+    m = MyModel(typ="pkn.tests.pydantic.test_paths.MyType", foo="pkn.tests.pydantic.test_paths.foo")
+    assert m.typ(1) == MyType(1)
+    assert m.foo() == foo()
