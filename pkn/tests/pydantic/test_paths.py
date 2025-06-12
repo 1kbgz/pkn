@@ -7,7 +7,7 @@ def foo():
     return "foo"
 
 
-class MyType(int): ...
+class MyType: ...
 
 
 class MyModel(BaseModel):
@@ -23,5 +23,14 @@ def test_get_import_path_inst():
 
 def test_get_import_path_string():
     m = MyModel(typ="pkn.tests.pydantic.test_paths.MyType", foo="pkn.tests.pydantic.test_paths.foo")
-    assert m.typ(1) == MyType(1)
-    assert m.foo() == foo()
+    assert m.typ == MyType
+    assert m.foo == foo
+
+
+def test_serialize():
+    m = MyModel(typ="pkn.tests.pydantic.test_paths.MyType", foo="pkn.tests.pydantic.test_paths.foo")
+    assert m.model_dump() == {
+        "typ": MyType,
+        "foo": foo,
+    }
+    assert m.model_dump_json() == ('{"typ":"pkn.tests.pydantic.test_paths.MyType","foo":"pkn.tests.pydantic.test_paths.foo"}')
