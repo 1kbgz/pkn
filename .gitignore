@@ -139,10 +139,13 @@ js/dist
 js/lib
 js/node_modules
 js/*.tgz
+pkn/extension
 
 # Jupyter
 .ipynb_checkpoints
 .autoversion
+!pkn/extension/pkn.json
+!pkn/extension/install.json
 pkn/nbextension
 pkn/labextension
 
