@@ -26,6 +26,8 @@ classifiers = [
 ]
 
 dependencies = [
+    "ccflow",
+    "colorlog",
     "pydantic",
 ]
 
