@@ -146,6 +146,7 @@ pkn/extension
 # Jupyter
 .ipynb_checkpoints
 .autoversion
+Untitled*.ipynb
 !pkn/extension/pkn.json
 !pkn/extension/install.json
 pkn/nbextension
