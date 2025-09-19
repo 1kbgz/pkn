@@ -29,6 +29,7 @@ classifiers = [
 dependencies = [
     "ccflow",
     "colorlog",
+    "emails",
     "pydantic",
 ]
 
