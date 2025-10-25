@@ -9,5 +9,19 @@ My Pocket Knife
 
 ## Overview
 
+This library contains a collection of Python utilities and extensions for commonly used frameworks, including [pydantic](https://docs.pydantic.dev/latest/), [ccflow](https://github.com/point72/ccflow), logging, Linux utilities, etc.
+
+### pydantic
+
+TODO
+
+### ccflow
+
+TODO
+
+### logging
+
+TODO
+
 > [!NOTE]
 > This library was generated using [copier](https://copier.readthedocs.io/en/stable/) from the [Base Python Project Template repository](https://github.com/python-project-templates/base).

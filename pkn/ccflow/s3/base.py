@@ -61,7 +61,8 @@ class S3Model(CallableModel):
     object_key: str
     client: S3Client
 
-    result_format: Union[ResultFormat, List[ResultFormat]] = "binary"
+    mode: Literal["read", "write", "read_write"] = "read"
+    format: Union[ResultFormat, List[ResultFormat]] = "binary"
 
     def template(self) -> Template:
         # Loads object_key as a Jinja2 template
@@ -77,6 +78,7 @@ class S3Model(CallableModel):
 
     @Flow.call
     def __call__(self, context):
+        # TODO: write/readwrite
         # TODO: specify retry policy
         # Use the S3 client to get the object from S3
         s3_client = self.client.client
@@ -85,7 +87,7 @@ class S3Model(CallableModel):
         # Read as binary
         data = response["Body"].read()
 
-        formats = [self.result_format] if not isinstance(self.result_format, list) else self.result_format
+        formats = [self.format] if not isinstance(self.format, list) else self.format
 
         for format in formats:
             match format:

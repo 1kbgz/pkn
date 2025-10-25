@@ -1,0 +1,7 @@
+
+_target_: pkn.ccflow.S3Client
+endpoint_url: ${oc.env:BACKBLAZE_S3_ENDPOINT_URL,https://s3.us-east-005.backblazeb2.com}
+session:
+  _target_: pkn.ccflow.S3Session
+  aws_access_key_id: ${oc.env:BACKBLAZE_ACCESS_KEY_ID}
+  aws_secret_access_key: ${oc.env:BACKBLAZE_SECRET_ACCESS_KEY}
