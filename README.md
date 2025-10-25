@@ -3,7 +3,7 @@
 My Pocket Knife
 
 [![Build Status](https://github.com/1kbgz/pkn/actions/workflows/build.yaml/badge.svg?branch=main&event=push)](https://github.com/1kbgz/pkn/actions/workflows/build.yaml)
-[![codecov](https://codecov.io/gh/1kbgz/pkn/branch/main/graph/badge.svg)](https://codecov.io/gh/1kbgz/pkn)
+[![codecov](https://codecov.io/gh/1kbgz/pkn/graph/badge.svg?token=DK9H3BRX82)](https://codecov.io/gh/1kbgz/pkn)
 [![License](https://img.shields.io/github/license/1kbgz/pkn)](https://github.com/1kbgz/pkn)
 [![PyPI](https://img.shields.io/pypi/v/pkn.svg)](https://pypi.python.org/pypi/pkn)
 
