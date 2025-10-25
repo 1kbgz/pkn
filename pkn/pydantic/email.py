@@ -1,7 +1,6 @@
 from typing import Union
 
 from ccflow import BaseModel
-from emails import Message as EmailMessage
 from pydantic import Field
 
 
@@ -34,6 +33,9 @@ class Email(BaseModel):
     attachments: list[Attachment] = Field(default_factory=list, description="List of email attachments")
 
     def send(self, to: Union[str, list[str]], render: dict = None):
+        # NOTE: defer import
+        from emails import Message as EmailMessage
+
         msg = EmailMessage(html=self.message.html, text=self.message.text, subject=self.message.subject, mail_from=self.message.mail_from)
 
         for attachment in self.attachments:
