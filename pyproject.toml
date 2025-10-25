@@ -65,7 +65,8 @@ develop = [
     # Optionals
     "boto3",
     "botocore",
-    "ccflow",
+    # "ccflow",
+    "ccflow@git+https://github.com/point72/ccflow#egg=8046aa7a195d5b9551a4f05d1c19336a7037834a",
     "colorlog",
     "emails",
     "jinja2",
@@ -74,6 +75,8 @@ develop = [
 logging = []
 
 [project.scripts]
+pkn-cc = "pkn.ccflow.cli:main"
+pkn-cc-explain = "pkn.ccflow.cli:explain"
 
 [project.urls]
 Repository = "https://github.com/1kbgz/pkn"
@@ -129,6 +132,10 @@ packages = ["pkn"]
 packages = ["pkn"]
 
 [tool.hatch.build.targets.wheel.shared-data]
+
+# TODO remove
+[tool.hatch.metadata]
+allow-direct-references = true
 
 [tool.hatch.metadata.hooks.hatch-multi]
 primary = ["base"]

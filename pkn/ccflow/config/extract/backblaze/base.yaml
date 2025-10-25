@@ -1,0 +1,24 @@
+
+defaults:
+  - /common/backblaze_s3_client@read.model.client
+
+
+bucket_name: ???
+object_key: ???
+format: [binary]
+output_name: ???
+suffix: ???
+
+read:
+  _target_: ccflow.PublisherModel
+  model:
+    _target_: pkn.ccflow.BackblazeS3Model
+    bucket_name: ${...bucket_name}
+    object_key: ${...object_key}
+    format: ${...format}
+  publisher:
+    _target_: ccflow.publishers.GenericFilePublisher
+    name: ${...output_name}
+    suffix: ${...suffix}
+  field: value
+callable: /read

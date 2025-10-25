@@ -157,3 +157,6 @@ pkn/labextension
 
 # Rust
 target
+
+# Data
+superstore.csv

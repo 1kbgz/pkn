@@ -58,6 +58,9 @@ jobs:
         SMTP_PORT: ${{ secrets.SMTP_PORT }}
         SMTP_USER: ${{ secrets.SMTP_USER }}
         SMTP_PASS: ${{ secrets.SMTP_PASS }}
+        BACKBLAZE_S3_ENDPOINT_URL: ${{ secrets.BACKBLAZE_S3_ENDPOINT_URL }}
+        BACKBLAZE_ACCESS_KEY_ID: ${{ secrets.BACKBLAZE_ACCESS_KEY_ID }}
+        BACKBLAZE_SECRET_ACCESS_KEY: ${{ secrets.BACKBLAZE_SECRET_ACCESS_KEY }}
 
     - name: Upload test results (Python)
       uses: actions/upload-artifact@v4
