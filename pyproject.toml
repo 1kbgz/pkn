@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-multi"]
 build-backend="hatchling.build"
 
 [project]
@@ -9,7 +9,7 @@ description = "My Pocket Knife"
 readme = "README.md"
 license = { text = "Apache-2.0" }
 version = "0.2.0"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 keywords = []
 
 classifiers = [
@@ -18,7 +18,6 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: CPython",
     "Programming Language :: Python :: Implementation :: PyPy",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -26,20 +25,35 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
 ]
 
-dependencies = [
+dynamic = ["dependencies"]
+
+[project.optional-dependencies]
+all = [
+    "boto3",
+    "botocore",
     "ccflow",
     "colorlog",
     "emails",
+    "jinja2",
     "pydantic",
 ]
-
-[project.optional-dependencies]
+base = [
+    "ccflow",
+    "colorlog",
+    "pydantic",
+]
+ccflow = [
+    "boto3",
+    "botocore",
+    "jinja2",
+]
 develop = [
     "build",
     "bump-my-version",
     "check-manifest",
     "codespell>=2.4,<2.5",
     "hatchling",
+    "hatch-multi",
     "mdformat>=0.7.22,<0.8",
     "mdformat-tables>=1",
     "pytest",
@@ -48,7 +62,16 @@ develop = [
     "twine",
     "uv",
     "wheel",
+    # Optionals
+    "boto3",
+    "botocore",
+    "ccflow",
+    "colorlog",
+    "emails",
+    "jinja2",
+    "pydantic",
 ]
+logging = []
 
 [project.scripts]
 
@@ -106,6 +129,10 @@ packages = ["pkn"]
 packages = ["pkn"]
 
 [tool.hatch.build.targets.wheel.shared-data]
+
+[tool.hatch.metadata.hooks.hatch-multi]
+primary = ["base"]
+ccflow = ["ccflow"]
 
 [tool.pytest.ini_options]
 addopts = ["-vvv", "--junitxml=junit.xml"]

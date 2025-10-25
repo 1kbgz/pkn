@@ -27,16 +27,16 @@ lint-py:  ## lint python with ruff
 	python -m ruff format --check pkn
 
 lint-docs:  ## lint docs with mdformat and codespell
-	python -m mdformat --check README.md 
-	python -m codespell_lib README.md 
+	python -m mdformat --check README.md
+	python -m codespell_lib README.md
 
 fix-py:  ## autoformat python code with ruff
 	python -m ruff check --fix pkn
 	python -m ruff format pkn
 
 fix-docs:  ## autoformat docs with mdformat and codespell
-	python -m mdformat README.md 
-	python -m codespell_lib --write README.md 
+	python -m mdformat README.md
+	python -m codespell_lib --write README.md
 
 lint: lint-py lint-docs  ## run all linters
 lints: lint
@@ -94,6 +94,7 @@ major:  ## bump a major version
 
 dist-build:  # build python dists
 	python -m build -w -s
+	HATCH_MULTI_BUILD=ccflow python -m build -w -s
 
 dist-check:  ## run python dist checker with twine
 	python -m twine check dist/*
