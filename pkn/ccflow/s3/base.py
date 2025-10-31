@@ -1,9 +1,9 @@
 from gzip import decompress
-from typing import List, Literal, Union, TypeVar, Generic
+from typing import List, Literal, TypeVar, Union
 
 from boto3 import Session
 from botocore.config import Config
-from ccflow import BaseModel, CallableModel, Flow, GenericResult, NullContext, ContextBase, ResultBase
+from ccflow import BaseModel, CallableModelGenericType, ContextBase, Flow, GenericResult, NullContext, ResultBase
 from jinja2 import Environment, Template
 
 try:
@@ -20,8 +20,8 @@ __all__ = (
 )
 
 ResultFormat = Literal["binary", "text", "json", "gzip"]
-C = TypeVar("C", bound=ContextBase)
-R = TypeVar("R", bound=ResultBase)
+Context = TypeVar("C", bound=ContextBase)
+Result = TypeVar("R", bound=ResultBase)
 
 
 class S3Config(BaseModel):
@@ -58,7 +58,13 @@ class S3Client(BaseModel):
         )
 
 
-class S3Model(CallableModel, Generic[C, R]):
+class S3Context(NullContext): ...
+
+
+class S3Result(GenericResult): ...
+
+
+class S3Model(CallableModelGenericType[S3Context, S3Result]):
     bucket_name: str
     object_key: str
     client: S3Client
@@ -71,7 +77,7 @@ class S3Model(CallableModel, Generic[C, R]):
         return Environment().from_string(self.object_key)
 
     @Flow.call
-    def __call__(self, context: NullContext) -> GenericResult:
+    def __call__(self, context: S3Context) -> S3Result:
         # TODO: write/readwrite
         # TODO: specify retry policy
         # Use the S3 client to get the object from S3
@@ -95,4 +101,4 @@ class S3Model(CallableModel, Generic[C, R]):
                     data = decompress(data)
                 case _:
                     raise ValueError(f"Unsupported result format: {format}")
-        return GenericResult(value=data)
+        return S3Result(value=data)
