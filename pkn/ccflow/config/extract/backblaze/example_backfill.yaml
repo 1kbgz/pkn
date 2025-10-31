@@ -13,4 +13,12 @@ suffix: .csv
 backfill:
   _target_: pkn.ccflow.BackfillModel
   model: ${..read}
+
+cli:
+  model:
+    _target_: ccflow.FlowOptions
+    evaluator:
+      _target_: ccflow.evaluators.GraphEvaluator
+    cacheable: true
+
 callable: /backfill

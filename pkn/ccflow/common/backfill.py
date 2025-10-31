@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Generic, List, Literal, Type, TypeVar, Union
+from typing import Generic, List, Literal, Tuple, Type, TypeVar, Union
 
 from ccflow import (
     BaseModel,
@@ -16,7 +16,7 @@ from ccflow import (
     ResultType,
 )
 from numpy import datetime64
-from pydantic import Field, SerializeAsAny, model_validator
+from pydantic import Field, PrivateAttr, SerializeAsAny, model_validator
 
 __all__ = (
     "Offset",
@@ -120,6 +120,8 @@ class BackfillResult(GenericResult): ...
 class BackfillModel(CallableModel, Generic[C, R]):
     model: CallableModelGenericType[C, R]
 
+    _steps: List[ContextType] = PrivateAttr(default_factory=list)
+
     @property
     def context_type(self) -> Type[ContextType]:
         return BackfillContext[self.model.context_type]
@@ -135,10 +137,17 @@ class BackfillModel(CallableModel, Generic[C, R]):
             raise ValueError("model must be a dict representing a CallableModelGenericType")
         return v
 
+    @Flow.deps
+    def __deps__(self, context: BackfillContext[C]) -> List[Tuple[CallableModelGenericType[C, R], List[ContextType]]]:
+        contexts = []
+        for step in context.steps(as_array=False):
+            contexts.append(context.context.model_copy(update={"datetime": step, "dt": step, "date": step.date()}))
+        self._steps = contexts
+        return [(self.model, contexts)]
+        # return [(self.model, [c]) for c in contexts]
+
     @Flow.call
     def __call__(self, context: BackfillContext[C]) -> R:
         result = {}
-        for step in context.steps(as_array=False):
-            step_context = context.context.model_copy(update={"datetime": step, "dt": step, "date": step.date()})
-            result[step] = self.model(context=step_context)
+        print("This should happen after all calls and be cached")
         return BackfillResult(value=result)
