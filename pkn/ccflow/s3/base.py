@@ -1,9 +1,9 @@
 from gzip import decompress
-from typing import List, Literal, Type, Union
+from typing import List, Literal, Union, TypeVar, Generic
 
 from boto3 import Session
 from botocore.config import Config
-from ccflow import BaseModel, CallableModel, ContextType, Flow, GenericResult, NullContext, ResultType
+from ccflow import BaseModel, CallableModel, Flow, GenericResult, NullContext, ContextBase, ResultBase
 from jinja2 import Environment, Template
 
 try:
@@ -20,6 +20,8 @@ __all__ = (
 )
 
 ResultFormat = Literal["binary", "text", "json", "gzip"]
+C = TypeVar("C", bound=ContextBase)
+R = TypeVar("R", bound=ResultBase)
 
 
 class S3Config(BaseModel):
@@ -56,7 +58,7 @@ class S3Client(BaseModel):
         )
 
 
-class S3Model(CallableModel):
+class S3Model(CallableModel, Generic[C, R]):
     bucket_name: str
     object_key: str
     client: S3Client
@@ -68,16 +70,8 @@ class S3Model(CallableModel):
         # Loads object_key as a Jinja2 template
         return Environment().from_string(self.object_key)
 
-    @property
-    def context_type(self) -> Type[ContextType]:
-        return NullContext
-
-    @property
-    def result_type(self) -> Type[ResultType]:
-        return GenericResult
-
     @Flow.call
-    def __call__(self, context):
+    def __call__(self, context: NullContext) -> GenericResult:
         # TODO: write/readwrite
         # TODO: specify retry policy
         # Use the S3 client to get the object from S3
