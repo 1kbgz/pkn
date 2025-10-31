@@ -66,7 +66,7 @@ develop = [
     "boto3",
     "botocore",
     # "ccflow",
-    "ccflow@git+https://github.com/point72/ccflow#egg=8046aa7a195d5b9551a4f05d1c19336a7037834a",
+    "ccflow>=0.6.9",
     "colorlog",
     "emails",
     "jinja2",
