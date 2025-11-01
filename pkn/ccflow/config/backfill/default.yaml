@@ -2,7 +2,7 @@
 defaults: []
 
 # NOTE: order matters!
-# pkn-cc +extract=backblaze +backfill=daily +context=[2025-01-01,2025-01-10,[],forward,2D]
+# pkn-cc +extract=backblaze +backfill=default +context=[2025-01-01,2025-01-10,[],forward,2D]
 
 backfill:
   _target_: pkn.ccflow.BackfillModel
