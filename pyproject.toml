@@ -134,10 +134,6 @@ packages = ["pkn"]
 
 [tool.hatch.build.targets.wheel.shared-data]
 
-# TODO remove
-[tool.hatch.metadata]
-allow-direct-references = true
-
 [tool.hatch.metadata.hooks.hatch-multi]
 primary = ["base"]
 ccflow = ["ccflow"]
