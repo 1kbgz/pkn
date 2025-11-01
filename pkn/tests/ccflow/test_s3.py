@@ -19,7 +19,7 @@ class TestS3:
         assert result.value.startswith(",Row ID")
 
     def test_s3_backblaze_backfill_example(self):
-        cfg = load(["+extract=backblaze", "+backfill=daily", "+context=[2025-01-01,2025-01-10,[],forward,2D]"], overwrite=True)
+        cfg = load(["+extract=backblaze", "+backfill=default", "+context=[2025-01-01,2025-01-10,[],forward,2D]"], overwrite=True)
         assert isinstance(cfg["backfill"], BackfillModel)
         assert isinstance(cfg["backfill"].model, PublisherModel)
         assert isinstance(cfg["backfill"].model.model, BackblazeS3Model)

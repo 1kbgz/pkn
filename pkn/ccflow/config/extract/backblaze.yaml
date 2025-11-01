@@ -4,8 +4,8 @@
 defaults:
   - /common/s3/backblaze@action.model.client
 
-bucket_name: timkpaine-public
-object_key: projects/pkn/superstore.csv
+bucket: timkpaine-public
+object: projects/pkn/superstore.csv
 format: text
 output_name: superstore
 suffix: .csv
@@ -14,8 +14,8 @@ action:
   _target_: ccflow.PublisherModel
   model:
     _target_: pkn.ccflow.BackblazeS3Model
-    bucket_name: ${...bucket_name}
-    object_key: ${...object_key}
+    bucket: ${...bucket}
+    object: ${...object}
     format: ${...format}
   publisher:
     _target_: ccflow.publishers.GenericFilePublisher
