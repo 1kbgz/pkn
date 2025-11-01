@@ -1,14 +1,16 @@
+# @package _global_
+# pkn-cc +context=[] +extract=backblaze
 
 defaults:
-  - /common/backblaze_s3_client@read.model.client
+  - /common/s3/backblaze@action.model.client
 
-bucket_name: ???
-object_key: ???
-format: [binary]
-output_name: ???
-suffix: ???
+bucket_name: timkpaine-public
+object_key: projects/pkn/superstore.csv
+format: text
+output_name: superstore
+suffix: .csv
 
-read:
+action:
   _target_: ccflow.PublisherModel
   model:
     _target_: pkn.ccflow.BackblazeS3Model
@@ -20,4 +22,5 @@ read:
     name: ${...output_name}
     suffix: ${...suffix}
   field: value
-callable: /read
+
+callable: /action

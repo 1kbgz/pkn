@@ -1,4 +1,6 @@
 
+# A backblaze b2 S3 client configuration
+
 _target_: pkn.ccflow.S3Client
 endpoint_url: ${oc.env:BACKBLAZE_S3_ENDPOINT_URL,https://s3.us-east-005.backblazeb2.com}
 session:

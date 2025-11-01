@@ -31,20 +31,21 @@ dynamic = ["dependencies"]
 all = [
     "boto3",
     "botocore",
-    "ccflow",
+    "ccflow>=0.6.10",
     "colorlog",
     "emails",
     "jinja2",
     "pydantic",
 ]
 base = [
-    "ccflow",
+    "ccflow>=0.6.10",
     "colorlog",
     "pydantic",
 ]
 ccflow = [
     "boto3",
     "botocore",
+    "ccflow>=0.6.10",
     "jinja2",
 ]
 develop = [
@@ -66,7 +67,7 @@ develop = [
     "boto3",
     "botocore",
     # "ccflow",
-    "ccflow>=0.6.9",
+    "ccflow>=0.6.10",
     "colorlog",
     "emails",
     "jinja2",

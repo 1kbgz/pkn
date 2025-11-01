@@ -1,2 +1,5 @@
+# @package _global_
+
 defaults:
   - _self_
+  - /common/s3/backblaze@s3.backblaze
