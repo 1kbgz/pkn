@@ -1,0 +1,22 @@
+# @package _global_
+defaults: []
+
+# NOTE: order matters!
+# pkn-cc +extract=backblaze +backfill=daily +context=[2025-01-01,2025-01-10,[],forward,2D]
+
+backfill:
+  _target_: pkn.ccflow.BackfillModel
+  # NOTE: we can refer to the model we want to backfill by path using ccflow registry
+  model: /action
+
+cli:
+  model:
+    _target_: ccflow.FlowOptions
+    evaluator:
+      _target_: ccflow.evaluators.MultiEvaluator
+      evaluators:
+        - _target_: ccflow.evaluators.GraphEvaluator
+        - _target_: ccflow.evaluators.MemoryCacheEvaluator
+    cacheable: true
+
+callable: /backfill
