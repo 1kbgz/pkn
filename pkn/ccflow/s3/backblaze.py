@@ -2,8 +2,7 @@ from datetime import datetime
 from typing import Optional, Type
 
 from ccflow import Flow
-
-from .base import S3Context, S3Model, S3Result
+from ccflow_s3 import S3Context, S3Model, S3Result
 
 __all__ = (
     "BackblazeContext",
