@@ -3,6 +3,13 @@ from typing import Union
 from ccflow import BaseModel
 from pydantic import Field
 
+__all__ = (
+    "Message",
+    "SMTP",
+    "Attachment",
+    "Email",
+)
+
 
 class Message(BaseModel):
     html: str = Field(default=None, description="HTML content of the email")
