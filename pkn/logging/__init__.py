@@ -1,10 +1,11 @@
+import sys
 from importlib.machinery import ModuleSpec, SourceFileLoader
 from inspect import currentframe
-from logging import Logger, getLogger as baseGetLogger
+from logging import FileHandler, Formatter, Logger, StreamHandler, getLogger as baseGetLogger
 from logging.config import dictConfig
-from typing import Literal, Union
+from typing import Literal, Optional, Union
 
-__all__ = ("default", "getLogger")
+__all__ = ("default", "getLogger", "getSimpleLogger")
 
 LogLevelStr = Literal["CRITICAL", "FATAL", "ERROR", "WARNING", "WARN", "INFO", "DEBUG", "NOTSET"]
 LogLevelInt = Literal[50, 40, 30, 20, 10, 0]
@@ -57,3 +58,16 @@ def getLogger() -> Logger:
     elif spec and isinstance(spec, ModuleSpec):
         module_name = spec.name
     return baseGetLogger(module_name)
+
+
+def getSimpleLogger(name: str, file: Optional[str] = None, stdout: bool = False) -> Logger:
+    log = baseGetLogger(name)
+    handler = StreamHandler(stream=sys.stdout if stdout else sys.stderr)
+    formatter = Formatter("[%(asctime)s][%(name)s][%(levelname)s]: %(message)s", datefmt="%Y-%m-%dT%H:%M:%S%z")
+    handler.setFormatter(formatter)
+    log.addHandler(handler)
+    if file:
+        file_handler = FileHandler(file)
+        file_handler.setFormatter(formatter)
+        log.addHandler(file_handler)
+    return log
