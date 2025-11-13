@@ -55,9 +55,8 @@ jobs:
       run: make coverage
       env:
         SMTP_HOST: ${{ secrets.SMTP_HOST }}
-        SMTP_PORT: ${{ secrets.SMTP_PORT }}
         SMTP_USER: ${{ secrets.SMTP_USER }}
-        SMTP_PASS: ${{ secrets.SMTP_PASS }}
+        SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
         BACKBLAZE_S3_ENDPOINT_URL: ${{ secrets.BACKBLAZE_S3_ENDPOINT_URL }}
         BACKBLAZE_ACCESS_KEY_ID: ${{ secrets.BACKBLAZE_ACCESS_KEY_ID }}
         BACKBLAZE_SECRET_ACCESS_KEY: ${{ secrets.BACKBLAZE_SECRET_ACCESS_KEY }}
