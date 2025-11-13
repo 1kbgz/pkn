@@ -33,6 +33,7 @@ all = [
     "botocore",
     "ccflow>=0.6.10",
     "ccflow-email",
+    "ccflow-s3",
     "colorlog",
     "jinja2",
     "pydantic",
@@ -47,6 +48,7 @@ ccflow = [
     "botocore",
     "ccflow>=0.6.10",
     "ccflow-email",
+    "ccflow-s3",
     "jinja2",
 ]
 develop = [
@@ -70,6 +72,7 @@ develop = [
     # "ccflow",
     "ccflow>=0.6.10",
     "ccflow-email",
+    "ccflow-s3",
     "colorlog",
     "emails",
     "jinja2",
