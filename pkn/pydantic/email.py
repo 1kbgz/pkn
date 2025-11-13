@@ -65,8 +65,8 @@ class Attachment(BaseModel):
 
 
 class Email(BaseModel):
-    message: Message = Field(default_factory=Message, description="Email message details")
-    smtp: SMTP = Field(default_factory=SMTP, description="SMTP server configuration")
+    message: Message = Field(description="Email message details")
+    smtp: SMTP = Field(description="SMTP server configuration")
     attachments: list[Attachment] = Field(default_factory=list, description="List of email attachments")
 
     def send(self, to: Union[str, list[str]], render: dict = None):
