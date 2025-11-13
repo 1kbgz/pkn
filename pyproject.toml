@@ -40,6 +40,8 @@ all = [
 ]
 base = [
     "ccflow>=0.6.10",
+    "ccflow-email",
+    "ccflow-s3",
     "colorlog",
     "pydantic",
 ]
