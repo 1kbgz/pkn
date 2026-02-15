@@ -1,10 +1,22 @@
 [build-system]
+<<<<<<< before updating
 requires = ["hatchling", "hatch-multi"]
+=======
+requires = [
+    "hatchling",
+]
+>>>>>>> after updating
 build-backend="hatchling.build"
 
 [project]
 name = "pkn"
+<<<<<<< before updating
 authors = [{name = "the pkn authors", email = "t.paine154@gmail.com"}]
+=======
+authors = [
+    {name = "1kbgz", email = "t.paine154@gmail.com"},
+]
+>>>>>>> after updating
 description = "My Pocket Knife"
 readme = "README.md"
 license = { text = "Apache-2.0" }
@@ -66,6 +78,7 @@ develop = [
     "pytest-cov",
     "ruff>=0.9,<0.15",
     "twine",
+    "ty",
     "uv",
     "wheel",
     # Optionals
@@ -134,10 +147,14 @@ artifacts = []
 src = "/"
 
 [tool.hatch.build.targets.sdist]
-packages = ["pkn"]
+packages = [
+    "pkn",
+]
 
 [tool.hatch.build.targets.wheel]
-packages = ["pkn"]
+packages = [
+    "pkn",
+]
 
 [tool.hatch.build.targets.wheel.shared-data]
 
@@ -146,20 +163,40 @@ primary = ["base"]
 ccflow = ["ccflow"]
 
 [tool.pytest.ini_options]
-addopts = ["-vvv", "--junitxml=junit.xml"]
+addopts = [
+    "-vvv",
+    "--junitxml=junit.xml",
+]
 testpaths = "pkn/tests"
 
 [tool.ruff]
 line-length = 150
 
 [tool.ruff.lint]
-extend-select = ["I"]
+extend-select = [
+    "I",
+]
 
 [tool.ruff.lint.isort]
 combine-as-imports = true
 default-section = "third-party"
-known-first-party = ["pkn"]
-section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+known-first-party = [
+    "pkn",
+]
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "first-party",
+    "local-folder",
+]
 
 [tool.ruff.lint.per-file-ignores]
+<<<<<<< before updating
 "__init__.py" = ["F401", "F403"]
+=======
+"__init__.py" = [
+    "F401",
+    "F403",
+]
+>>>>>>> after updating
