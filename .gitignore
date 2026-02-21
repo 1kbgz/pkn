@@ -156,12 +156,10 @@ pkn/labextension
 # Rust
 target
 
-<<<<<<< before updating
-# Data
-superstore.csv
-outputs
-=======
 # Hydra
 outputs/
 multirun/
->>>>>>> after updating
+
+# Data
+superstore.csv
+outputs
