@@ -141,14 +141,12 @@ js/node_modules
 js/test-results
 js/playwright-report
 js/*.tgz
-pkn/extension
 
 # Jupyter
 .ipynb_checkpoints
 .autoversion
 Untitled*.ipynb
-!pkn/extension/pkn.json
-!pkn/extension/install.json
+pkn/extension
 pkn/nbextension
 pkn/labextension
 
@@ -157,6 +155,10 @@ pkn/labextension
 
 # Rust
 target
+
+# Hydra
+outputs/
+multirun/
 
 # Data
 superstore.csv
