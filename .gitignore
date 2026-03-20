@@ -146,13 +146,11 @@ target
 outputs/
 multirun/
 
-<<<<<<< before updating
-# Data
-superstore.csv
-outputs
-=======
 # AI
 ROADMAP.md
 AGENTS.md
 .github/hooks/sdlc.json
->>>>>>> after updating
+
+# Data
+superstore.csv
+outputs
