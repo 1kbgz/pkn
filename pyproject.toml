@@ -12,7 +12,7 @@ authors = [
 description = "My Pocket Knife"
 readme = "README.md"
 license = { text = "Apache-2.0" }
-version = "0.4.2"
+version = "0.5.0"
 requires-python = ">=3.10"
 keywords = []
 
@@ -62,7 +62,7 @@ Repository = "https://github.com/1kbgz/pkn"
 Homepage = "https://github.com/1kbgz/pkn"
 
 [tool.bumpversion]
-current_version = "0.4.2"
+current_version = "0.5.0"
 commit = true
 tag = true
 commit_args = "-s"
