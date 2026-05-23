@@ -1,7 +1,6 @@
 [build-system]
 requires = [
     "hatchling",
-    "hatch-multi",
 ]
 build-backend = "hatchling.build"
 
@@ -30,34 +29,12 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
 ]
 
-dynamic = ["dependencies"]
+dependencies = [
+    "colorlog",
+    "pydantic",
+]
 
 [project.optional-dependencies]
-all = [
-    "boto3",
-    "botocore",
-    "ccflow>=0.6.10",
-    "ccflow-email",
-    "ccflow-s3",
-    "colorlog",
-    "jinja2",
-    "pydantic",
-]
-base = [
-    "ccflow>=0.6.10",
-    "ccflow-email",
-    "ccflow-s3",
-    "colorlog",
-    "pydantic",
-]
-ccflow = [
-    "boto3",
-    "botocore",
-    "ccflow>=0.6.10",
-    "ccflow-email",
-    "ccflow-s3",
-    "jinja2",
-]
 develop = [
     "build",
     "bump-my-version",
@@ -75,22 +52,10 @@ develop = [
     "uv",
     "wheel",
     # Optionals
-    "boto3",
-    "botocore",
-    # "ccflow",
-    "ccflow>=0.6.10",
-    "ccflow-email",
-    "ccflow-s3",
     "colorlog",
-    "emails",
-    "jinja2",
     "pydantic",
 ]
 logging = []
-
-[project.scripts]
-pkn-cc = "pkn.ccflow.cli:main"
-pkn-cc-explain = "pkn.ccflow.cli:explain"
 
 [project.urls]
 Repository = "https://github.com/1kbgz/pkn"
@@ -144,10 +109,6 @@ packages = [
 ]
 
 [tool.hatch.build.targets.wheel.shared-data]
-
-[tool.hatch.metadata.hooks.hatch-multi]
-primary = ["base"]
-ccflow = ["ccflow"]
 
 [tool.pytest.ini_options]
 addopts = [

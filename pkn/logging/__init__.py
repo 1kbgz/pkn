@@ -1,15 +1,22 @@
 import sys
 from importlib.machinery import ModuleSpec, SourceFileLoader
 from inspect import currentframe
-from logging import FileHandler, Formatter, Logger, StreamHandler, getLogger as baseGetLogger
+from logging import FileHandler as BaseFileHandler, Formatter, Logger, StreamHandler, getLogger as baseGetLogger
 from logging.config import dictConfig
+from pathlib import Path
 from typing import Literal, Optional, Union
 
-__all__ = ("default", "getLogger", "getSimpleLogger")
+__all__ = ("default", "getLogger", "getSimpleLogger", "StreamHandler", "FileHandler")
 
 LogLevelStr = Literal["CRITICAL", "FATAL", "ERROR", "WARNING", "WARN", "INFO", "DEBUG", "NOTSET"]
 LogLevelInt = Literal[50, 40, 30, 20, 10, 0]
 LogLevel = Union[LogLevelStr, LogLevelInt]
+
+
+class FileHandler(BaseFileHandler):
+    def __init__(self, filename, *args, **kwargs):
+        Path(filename).parent.mkdir(parents=True, exist_ok=True)
+        super().__init__(filename, *args, **kwargs)
 
 
 def default(
@@ -36,12 +43,12 @@ def default(
             "whenAndWhere": {"format": "[%(asctime)s][%(threadName)s][%(name)s][%(filename)s:%(lineno)d][%(levelname)s]: %(message)s"},
         },
         handlers={
-            "console": {"level": console_level, "class": "ccflow.utils.logging.StreamHandler", "formatter": "colorlog", "stream": "ext://sys.stdout"},
+            "console": {"level": console_level, "class": "pkn.logging.StreamHandler", "formatter": "colorlog", "stream": "ext://sys.stdout"},
         },
         root={"handlers": ["console"], "level": "DEBUG"},
     )
     if file:
-        config["handlers"]["file"] = {"level": file_level, "class": "ccflow.FileHandler", "formatter": "whenAndWhere", "filename": file}
+        config["handlers"]["file"] = {"level": file_level, "class": "pkn.logging.FileHandler", "formatter": "whenAndWhere", "filename": file}
     dictConfig(config)
 
 
