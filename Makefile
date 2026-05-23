@@ -97,7 +97,6 @@ major:  ## bump a major version
 
 dist-build:  # build python dists
 	python -m build -w -s
-	HATCH_MULTI_BUILD=ccflow python -m build -w -s
 
 dist-check:  ## run python dist checker with twine
 	python -m twine check dist/*
