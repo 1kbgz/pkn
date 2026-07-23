@@ -1,10 +1,9 @@
 import importlib
-from typing import Dict, List
 
 __all__ = ("make_lazy_getattr",)
 
 
-def make_lazy_getattr(package, module_map: Dict[str, List[str]]):
+def make_lazy_getattr(package, module_map: dict[str, list[str]]):
     # build a reverse index mapping
     mapping = {}
     for mod, subs in module_map.items():

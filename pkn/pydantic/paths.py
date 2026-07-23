@@ -1,21 +1,19 @@
 from importlib import import_module
 from types import FunctionType, MethodType
-from typing import Annotated, Optional
+from typing import Annotated
 
 from pydantic import BeforeValidator, PlainSerializer
 
 __all__ = (
+    "CallablePath",
+    "ImportPath",
     "get_import_path",
     "serialize_path_as_string",
-    "ImportPath",
-    "CallablePath",
 )
 
 
 def get_import_path(path: str) -> type:
-    if isinstance(path, type):
-        return path
-    elif isinstance(path, (FunctionType, MethodType)):
+    if isinstance(path, (type, FunctionType, MethodType)):
         return path
     if not isinstance(path, str):
         raise TypeError(path)
@@ -23,7 +21,7 @@ def get_import_path(path: str) -> type:
     return getattr(import_module(module), call)
 
 
-def serialize_path_as_string(value: type) -> Optional[str]:
+def serialize_path_as_string(value: type) -> str | None:
     if value is None:
         return None
     if hasattr(value, "__module__") and hasattr(value, "__qualname__"):

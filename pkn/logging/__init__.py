@@ -4,13 +4,13 @@ from inspect import currentframe
 from logging import FileHandler as BaseFileHandler, Formatter, Logger, StreamHandler, getLogger as baseGetLogger
 from logging.config import dictConfig
 from pathlib import Path
-from typing import Literal, Optional, Union
+from typing import Literal
 
-__all__ = ("default", "getLogger", "getSimpleLogger", "StreamHandler", "FileHandler")
+__all__ = ("FileHandler", "StreamHandler", "default", "getLogger", "getSimpleLogger")
 
 LogLevelStr = Literal["CRITICAL", "FATAL", "ERROR", "WARNING", "WARN", "INFO", "DEBUG", "NOTSET"]
 LogLevelInt = Literal[50, 40, 30, 20, 10, 0]
-LogLevel = Union[LogLevelStr, LogLevelInt]
+LogLevel = LogLevelStr | LogLevelInt
 
 
 class FileHandler(BaseFileHandler):
@@ -24,10 +24,10 @@ def default(
     console_level: LogLevel = "INFO",
     file_level: LogLevel = "DEBUG",
 ) -> None:
-    config = dict(
-        version=1,
-        disable_existing_loggers=False,
-        formatters={
+    config = {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "formatters": {
             "simple": {"format": "[%(asctime)s][%(threadName)s][%(name)s][%(levelname)s]: %(message)s"},
             "colorlog": {
                 "()": "colorlog.ColoredFormatter",
@@ -42,11 +42,11 @@ def default(
             },
             "whenAndWhere": {"format": "[%(asctime)s][%(threadName)s][%(name)s][%(filename)s:%(lineno)d][%(levelname)s]: %(message)s"},
         },
-        handlers={
+        "handlers": {
             "console": {"level": console_level, "class": "pkn.logging.StreamHandler", "formatter": "colorlog", "stream": "ext://sys.stdout"},
         },
-        root={"handlers": ["console"], "level": "DEBUG"},
-    )
+        "root": {"handlers": ["console"], "level": "DEBUG"},
+    }
     if file:
         config["handlers"]["file"] = {"level": file_level, "class": "pkn.logging.FileHandler", "formatter": "whenAndWhere", "filename": file}
     dictConfig(config)
@@ -67,7 +67,7 @@ def getLogger() -> Logger:
     return baseGetLogger(module_name)
 
 
-def getSimpleLogger(name: str, file: Optional[str] = None, stdout: bool = False) -> Logger:
+def getSimpleLogger(name: str, file: str | None = None, stdout: bool = False) -> Logger:
     log = baseGetLogger(name)
     handler = StreamHandler(stream=sys.stdout if stdout else sys.stderr)
     formatter = Formatter("[%(asctime)s][%(name)s][%(levelname)s]: %(message)s", datefmt="%Y-%m-%dT%H:%M:%S%z")
