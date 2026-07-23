@@ -1,4 +1,4 @@
-from typing import Dict as DictType, List as ListType, Optional, Union
+from typing import Union
 
 from pydantic import BaseModel, Field, RootModel
 
@@ -6,7 +6,7 @@ __all__ = ("Dict", "List")
 
 
 class Dict(RootModel):
-    root: Optional[DictType[str, Optional[Union[BaseModel, "Dict", "List", int, float, str]]]] = Field(default_factory=dict)
+    root: dict[str, Union[BaseModel, "Dict", "List", int, float, str] | None] | None = Field(default_factory=dict)
 
     def __iter__(self):
         return iter(self.root)
@@ -46,7 +46,7 @@ class Dict(RootModel):
 
 
 class List(RootModel):
-    root: Optional[ListType[Union[BaseModel, "Dict", "List", int, float, str]]] = Field(default_factory=list)
+    root: list[Union[BaseModel, "Dict", "List", int, float, str]] | None = Field(default_factory=list)
 
     def __iter__(self):
         return iter(self.root)
@@ -69,7 +69,7 @@ class List(RootModel):
     def append(self, value: BaseModel):
         self.root.append(value)
 
-    def extend(self, values: ListType[BaseModel]):
+    def extend(self, values: list[BaseModel]):
         self.root.extend(values)
 
     def insert(self, index: int, value: BaseModel):
