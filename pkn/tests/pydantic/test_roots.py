@@ -1,3 +1,4 @@
+import pytest
 from pydantic import BaseModel
 
 from pkn.pydantic import Dict, List
@@ -45,3 +46,21 @@ class TestPydanticRoots:
     def test_list_types(self):
         d = List([MyModel(a=1, b="b"), "abc", 1, 1.2, List(), Dict(), None])
         assert len(d) == 7
+
+    @pytest.mark.parametrize("model", [Dict, List])
+    def test_null_root(self, model):
+        value = model(None)
+        assert value.root is None
+        with pytest.raises(TypeError, match="root is None"):
+            len(value)
+
+    def test_list_sort_copy_and_iadd(self):
+        value = List([3, 1, 2])
+        value.sort()
+        assert value.copy() == [1, 2, 3]
+        root = value.root
+        value += [4]
+        assert value.root is root
+        assert value.copy() == [1, 2, 3, 4]
+        value.sort(key=lambda item: -item)
+        assert value.copy() == [4, 3, 2, 1]

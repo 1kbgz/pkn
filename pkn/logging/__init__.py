@@ -55,10 +55,13 @@ def default(
 def getLogger() -> Logger:
     # Get fully qualified module name of parent caller
     cur_frame = currentframe()
+    if cur_frame is None or cur_frame.f_back is None:
+        return baseGetLogger()
     caller_frame = cur_frame.f_back
+    module_name = caller_frame.f_globals.get("__name__")
 
-    spec = caller_frame.f_globals["__spec__"]
-    loader = caller_frame.f_globals["__loader__"] or spec
+    spec = caller_frame.f_globals.get("__spec__")
+    loader = caller_frame.f_globals.get("__loader__") or spec
 
     if isinstance(loader, SourceFileLoader):
         module_name = loader.name
